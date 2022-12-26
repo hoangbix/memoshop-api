@@ -42,7 +42,7 @@ const login = asyncHandler(async (req, res) => {
     res.cookie('refreshToken', refreshToken, { httpOnly: true, maxAge: 72 * 60 * 60 * 1000 });
 
     res.json({
-      _id: user._id,
+      id: user._id,
       firstname: user.firstname,
       lastname: user.lastname,
       email: user.email,
@@ -70,7 +70,7 @@ const adminLogin = asyncHandler(async (req, res) => {
     res.cookie('refreshToken', refreshToken, { httpOnly: true, maxAge: 72 * 60 * 60 * 1000 });
 
     res.json({
-      _id: admin._id,
+      id: admin._id,
       firstname: admin.firstname,
       lastname: admin.lastname,
       email: admin.email,

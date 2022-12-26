@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 var userSchema = new mongoose.Schema(
   {
-    fullname: { type: String, required: true },
+    fullName: { type: String, required: true },
     avatar: { type: String, default: 'https://res.cloudinary.com/dparfrfjz/image/upload/v1672070220/avatar.png' },
     email: { type: String, required: true, unique: true },
     mobile: { type: String, required: true, unique: true },
