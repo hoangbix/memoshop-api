@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 const asyncHandler = require('express-async-handler');
-const User = require('../models/UserModel');
 
 const verifyUser = asyncHandler((req, res, next) => {
   if (!req?.headers?.authorization?.startsWith('Bearer')) throw new Error('There is no token attached to headers');
@@ -14,17 +13,9 @@ const verifyUser = asyncHandler((req, res, next) => {
   });
 });
 
-// const verifyUser = asyncHandler(async (req, res, next) => {
-//   verifyToken(req, res, async () => {
-//     const user = await User.findById();
-//     if (req.user.role === 'admin' || req.user.id === req.params.id) return next();
-//     throw new Error('You are not authenticated');
-//   });
-// });
-
 const verifyAdmin = asyncHandler(async (req, res, next) => {
   verifyUser(req, res, () => {
-    if (req.user.role !== 'admin') throw new Error('Only admin have this access');
+    if (req.user.role !== 'admin') throw new Error('Only the administrator has access');
     next();
   });
 });

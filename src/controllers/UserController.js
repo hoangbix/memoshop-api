@@ -59,7 +59,7 @@ const adminLogin = asyncHandler(async (req, res) => {
     const admin = await User.findOne({ email: req.body.email });
     if (!admin) throw new Error('User not found');
 
-    if (admin.role !== 'admin') throw new Error('Not authorized');
+    if (admin.role !== 'admin') throw new Error('Only the administrator has access');
 
     const isPasswordCorrect = await bcrypt.compare(req.body.password, admin.password);
     if (!isPasswordCorrect) throw new Error(`Password incorrect`);
