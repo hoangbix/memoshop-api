@@ -57,12 +57,12 @@ const login = asyncHandler(async (req, res) => {
 const adminLogin = asyncHandler(async (req, res) => {
   try {
     const admin = await User.findOne({ email: req.body.email });
-    if (!admin) throw new Error('User not found');
+    if (!admin) throw new Error('Tài khoản không tồn tại');
 
-    if (admin.role !== 'admin') throw new Error('Only the administrator has access');
+    if (admin.role !== 'admin') throw new Error('Chỉ người quản trị mới có quyền đăng nhập');
 
     const isPasswordCorrect = await bcrypt.compare(req.body.password, admin.password);
-    if (!isPasswordCorrect) throw new Error(`Password incorrect`);
+    if (!isPasswordCorrect) throw new Error(`Mật khẩu không hợp lệ`);
 
     const refreshToken = await generateRefreshToken(admin._id, admin.role);
     await User.findByIdAndUpdate(admin._id, { refreshToken }, { new: true });
