@@ -5,6 +5,9 @@ const ProdCategory = require('../models/ProdCategoryModel');
 
 const createProdCategory = asyncHandler(async (req, res) => {
   try {
+    const checkCategory = await ProdCategory.findOne({ title: req.body.title });
+    if (checkCategory) throw new Error(`Danh mục "${req.body.title}" đã tồn tại`);
+
     req.body.slug = slugify(req.body.title);
     const category = await ProdCategory.create(req.body);
     res.json(category);
