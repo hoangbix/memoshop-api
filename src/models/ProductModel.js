@@ -11,9 +11,10 @@ var productSchema = new mongoose.Schema(
     quantity: { type: Number, require: true },
     sold: { type: Number, default: 0 },
     images: [],
-    color: { type: String, required: true },
     ratings: [{ star: Number, comment: String, postedby: { type: mongoose.Schema.Types.ObjectId, ref: 'User' } }],
     totalratings: { type: Number, default: 0 },
+    importWarehouseDate: { type: Date, required: true },
+    expirationDate: { type: Date, required: true },
   },
   {
     timestamps: true,

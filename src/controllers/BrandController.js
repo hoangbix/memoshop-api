@@ -5,6 +5,9 @@ const Brand = require('../models/BrandModel');
 
 const createBrand = asyncHandler(async (req, res) => {
   try {
+    const checkBrand = await Brand.findOne({ title: req.body.title });
+    if (checkBrand) throw new Error(`Thương hiệu "${req.body.title}" đã tồn tại`);
+
     req.body.slug = slugify(req.body.title);
     const brand = await Brand.create(req.body);
     res.json(brand);
