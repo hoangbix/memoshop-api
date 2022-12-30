@@ -6,6 +6,7 @@ var productSchema = new mongoose.Schema(
     slug: { type: String, required: true, unique: true, lowercase: true },
     description: { type: String, require: true },
     price: { type: Number, require: true },
+    promotionalPrice: { type: Number },
     category: { type: String, required: true },
     brand: { type: String, required: true },
     quantity: { type: Number, require: true },
