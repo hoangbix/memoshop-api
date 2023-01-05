@@ -5,6 +5,7 @@ var productSchema = new mongoose.Schema(
     title: { type: String, required: true, trim: true },
     slug: { type: String, required: true, unique: true, lowercase: true },
     description: { type: String, require: true },
+    shortDesc: { type: String, require: true },
     price: { type: Number, require: true },
     promotionalPrice: { type: Number },
     category: { type: String, required: true },
@@ -16,6 +17,8 @@ var productSchema = new mongoose.Schema(
     totalratings: { type: Number, default: 0 },
     importWarehouseDate: { type: Date, required: true },
     expirationDate: { type: Date, required: true },
+    isHot: { type: Boolean },
+    isSelling: { type: Boolean },
   },
   {
     timestamps: true,
